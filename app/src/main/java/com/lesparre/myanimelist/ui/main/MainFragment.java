@@ -10,23 +10,20 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.lesparre.myanimelist.R;
 import com.lesparre.myanimelist.controller.ApiController;
 import com.lesparre.myanimelist.models.Anime;
 import com.lesparre.myanimelist.models.ByGenreRequest;
-import com.lesparre.myanimelist.service.AnimeService;
-
-import java.io.Console;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainFragment extends Fragment {
+public class MainFragment extends Fragment implements MainRecyclerViewAdapter.ItemClickListener{
 
     private MainViewModel mViewModel;
     private MainRecyclerViewAdapter adapter;
@@ -48,11 +45,12 @@ public class MainFragment extends Fragment {
         this.view = inflater.inflate(R.layout.main_fragment, container, false);
 
         this.myAnimeList = new ArrayList<Anime>();
+
         // get data from api controller
         System.out.println("API : "+ApiController.getInstance().toString());
         ApiController.getInstance().getAnimesByGenre("1",this::getAnime, this::fail); // 1 is for Action
 
-        // Texte de chargement
+        // loading text
         TextView textView = view.findViewById(R.id.textViewMiddle);
         textView.setText("Chargement");
 
@@ -60,6 +58,7 @@ public class MainFragment extends Fragment {
         this.recyclerView = view.findViewById(R.id.rvAnime);
         this.recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         this.adapter = new MainRecyclerViewAdapter(getActivity(), this.myAnimeList);
+        adapter.setClickListener(this);
         this.recyclerView.setAdapter(adapter);
 
         return view;
@@ -70,6 +69,11 @@ public class MainFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         mViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
         // TODO: Use the ViewModel
+    }
+
+    @Override
+    public void onItemClick(View view, int position) {
+        Toast.makeText(getActivity(), "You clicked " + adapter.getItem(position) + " on row number " + position, Toast.LENGTH_SHORT).show();
     }
 
     private void getAnime(ByGenreRequest list)

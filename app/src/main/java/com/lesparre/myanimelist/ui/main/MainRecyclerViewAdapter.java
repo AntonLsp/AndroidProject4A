@@ -42,7 +42,7 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerVi
     public void onBindViewHolder(ViewHolder holder, int position) {
         Anime anime = mData.get(position);
         holder.title.setText(anime.getTitle());
-        holder.subtitle.setText(anime.getEpisodes() + " épisodes");
+        holder.subtitle.setText(anime.getEpisodes() + " episodes");
         holder.description.setText(anime.getSynopsis());
         Picasso.get().load( anime.getImageUrl() ).into(holder.picture);
     }
@@ -86,7 +86,7 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerVi
         this.mClickListener = itemClickListener;
     }
 
-    // parent activity will implement this method to respond to click events
+    // parent will implement this to respond to click events
     public interface ItemClickListener {
         void onItemClick(View view, int position);
     }

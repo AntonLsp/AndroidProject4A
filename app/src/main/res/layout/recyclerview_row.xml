@@ -7,6 +7,9 @@
     android:padding="10dp"
     android:outlineProvider="bounds"
     android:elevation="1dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:background="?attr/selectableItemBackground"
     >
     <ImageView
         android:id="@+id/image"
