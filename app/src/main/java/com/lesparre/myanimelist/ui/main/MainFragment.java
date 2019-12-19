@@ -52,7 +52,7 @@ public class MainFragment extends Fragment implements MainRecyclerViewAdapter.It
 
         // loading text
         TextView textView = view.findViewById(R.id.textViewMiddle);
-        textView.setText("Chargement");
+        textView.setText("Loading data");
 
         // set up the RecyclerView
         this.recyclerView = view.findViewById(R.id.rvAnime);
