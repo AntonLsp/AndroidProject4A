@@ -23,15 +23,16 @@ import com.lesparre.myanimelist.models.ByGenreRequest;
 import com.lesparre.myanimelist.service.AnimeService;
 
 import java.io.Console;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
-
-import javax.security.auth.callback.Callback;
 
 public class MainFragment extends Fragment {
 
     private MainViewModel mViewModel;
     private MainRecyclerViewAdapter adapter;
+    private View view;
+
+    private RecyclerView recyclerView;
 
     private List<Anime> myAnimeList;
 
@@ -44,35 +45,22 @@ public class MainFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.main_fragment, container, false);
+        this.view = inflater.inflate(R.layout.main_fragment, container, false);
 
+        this.myAnimeList = new ArrayList<Anime>();
+        // get data from api controller
+        System.out.println("API : "+ApiController.getInstance().toString());
+        ApiController.getInstance().getAnimesByGenre("1",this::getAnime, this::fail); // 1 is for Action
 
-
-        // data to populate the RecyclerView with
-        List<Pair<String,String>> animalNames = Arrays.asList(
-                Pair.create("Naruto", "Très bon anime"),
-                Pair.create("DBZ", "Avec sangoku !"),
-                Pair.create("DBZ", "Avec sangoku !"),
-                Pair.create("DBZ", "Avec sangoku !"),
-                Pair.create("DBZ", "Avec sangoku !"),
-                Pair.create("DBZ", "Avec sangoku !"),
-                Pair.create("DBZ", "Avec sangoku !"),
-                Pair.create("One Piece", "Beaucoup d'épisodes !"),
-                Pair.create("One Piece", "Beaucoup d'épisodes !"),
-                Pair.create("One Piece", "Beaucoup d'épisodes !")
-        );
-
-        TextView textView = view.findViewById(R.id.textViewBottom);
-        textView.setText("Modified");
+        // Texte de chargement
+        TextView textView = view.findViewById(R.id.textViewMiddle);
+        textView.setText("Chargement");
 
         // set up the RecyclerView
-        RecyclerView recyclerView = view.findViewById(R.id.rvAnime);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        adapter = new MainRecyclerViewAdapter(getActivity(), animalNames);
-        //adapter.setClickListener(this);
-        recyclerView.setAdapter(adapter);
-        System.out.println("API : "+ApiController.getInstance().toString());
-        ApiController.getInstance().getAnimesByGenre("1",this::getAnime, this::fail);
+        this.recyclerView = view.findViewById(R.id.rvAnime);
+        this.recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        this.adapter = new MainRecyclerViewAdapter(getActivity(), this.myAnimeList);
+        this.recyclerView.setAdapter(adapter);
 
         return view;
     }
@@ -87,11 +75,18 @@ public class MainFragment extends Fragment {
     private void getAnime(ByGenreRequest list)
     {
         System.out.println(list.getAnime().get(0).getTitle());
-        myAnimeList = list.getAnime();
+        this.myAnimeList.addAll(list.getAnime());
+        this.adapter.notifyDataSetChanged();
+
+        // Hide loading textview
+        TextView textView = this.view.findViewById(R.id.textViewMiddle);
+        textView.setVisibility(TextView.INVISIBLE);
     }
 
     private void fail() {
-        System.out.println("FAIL");
+        TextView textView = this.view.findViewById(R.id.textViewMiddle);
+        textView.setText("Impossible de joindre le serveur.");
+        textView.setVisibility(TextView.VISIBLE);
     }
 
 }

@@ -2,26 +2,30 @@ package com.lesparre.myanimelist.ui.main;
 
 
 import android.content.Context;
+import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.util.Pair;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.lesparre.myanimelist.R;
+import com.lesparre.myanimelist.models.Anime;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerViewAdapter.ViewHolder> {
 
-    private List<Pair<String,String>> mData;
+    private List<Anime> mData;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
 
     // data is passed into the constructor
-    MainRecyclerViewAdapter(Context context, List<Pair<String,String>> data) {
+    MainRecyclerViewAdapter(Context context, List<Anime> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
     }
@@ -36,9 +40,11 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerVi
     // binds the data to the TextView in each row
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Pair<String, String> pair = mData.get(position);
-        holder.title.setText(pair.first);
-        holder.description.setText(pair.second);
+        Anime anime = mData.get(position);
+        holder.title.setText(anime.getTitle());
+        holder.subtitle.setText(anime.getEpisodes() + " épisodes");
+        holder.description.setText(anime.getSynopsis());
+        Picasso.get().load( anime.getImageUrl() ).into(holder.picture);
     }
 
     // total number of rows
@@ -51,12 +57,16 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerVi
     // stores and recycles views as they are scrolled off screen
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView title;
+        TextView subtitle;
         TextView description;
+        ImageView picture;
 
         ViewHolder(View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.title);
+            subtitle = itemView.findViewById(R.id.subtitle);
             description = itemView.findViewById(R.id.description);
+            picture = itemView.findViewById(R.id.image);
             itemView.setOnClickListener(this);
         }
 
@@ -66,9 +76,9 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerVi
         }
     }
 
-    // convenience method for getting data at click position
-    Pair<String, String> getItem(int id) {
-        return mData.get(id);
+    // convenience method for getting an anime at a particular position
+    Anime getItem(int id) {
+        return this.mData.get(id);
     }
 
     // allows clicks events to be caught

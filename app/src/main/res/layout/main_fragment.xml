@@ -11,17 +11,18 @@
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:padding="5dp"
         android:id="@+id/rvAnime"/>
 
     <TextView
-        android:id="@+id/textViewBottom"
+        android:id="@+id/textViewMiddle"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
         android:text="Application"
-        android:textSize="30sp"
-        android:padding="30dp"
-        android:gravity="center_horizontal"
-        android:layout_alignParentBottom="true"
+        android:textSize="20sp"
+        android:padding="10dp"
+        android:gravity="center"
         />
 
 </RelativeLayout>
