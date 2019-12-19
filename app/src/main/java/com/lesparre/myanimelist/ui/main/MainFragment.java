@@ -17,14 +17,24 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.lesparre.myanimelist.R;
+import com.lesparre.myanimelist.controller.ApiController;
+import com.lesparre.myanimelist.models.Anime;
+import com.lesparre.myanimelist.models.ByGenreRequest;
+import com.lesparre.myanimelist.service.AnimeService;
 
+import java.io.Console;
 import java.util.Arrays;
 import java.util.List;
+
+import javax.security.auth.callback.Callback;
 
 public class MainFragment extends Fragment {
 
     private MainViewModel mViewModel;
     private MainRecyclerViewAdapter adapter;
+
+    private List<Anime> myAnimeList;
+
 
     public static MainFragment newInstance() {
         return new MainFragment();
@@ -35,6 +45,9 @@ public class MainFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.main_fragment, container, false);
+
+
+
         // data to populate the RecyclerView with
         List<Pair<String,String>> animalNames = Arrays.asList(
                 Pair.create("Naruto", "Très bon anime"),
@@ -58,6 +71,9 @@ public class MainFragment extends Fragment {
         adapter = new MainRecyclerViewAdapter(getActivity(), animalNames);
         //adapter.setClickListener(this);
         recyclerView.setAdapter(adapter);
+        System.out.println("API : "+ApiController.getInstance().toString());
+        ApiController.getInstance().getAnimesByGenre("1",this::getAnime, this::fail);
+
         return view;
     }
 
@@ -66,6 +82,16 @@ public class MainFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         mViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
         // TODO: Use the ViewModel
+    }
+
+    private void getAnime(ByGenreRequest list)
+    {
+        System.out.println(list.getAnime().get(0).getTitle());
+        myAnimeList = list.getAnime();
+    }
+
+    private void fail() {
+        System.out.println("FAIL");
     }
 
 }
