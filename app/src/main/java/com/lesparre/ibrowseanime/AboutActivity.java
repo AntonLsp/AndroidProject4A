@@ -13,7 +13,7 @@ public class AboutActivity extends AppCompatActivity {
         setContentView(R.layout.activity_about);
     }
 
-    public void backToMain(View view)
+    public void backToMain(View v)
     {
         this.finish();
     }

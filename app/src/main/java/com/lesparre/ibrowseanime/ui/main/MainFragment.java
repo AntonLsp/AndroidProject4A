@@ -31,10 +31,6 @@ public class MainFragment extends Fragment implements AdapterView.OnItemSelected
 
     private AnimeListListener animeListListener;
 
-    public static MainFragment newInstance() {
-        return new MainFragment();
-    }
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -60,8 +56,8 @@ public class MainFragment extends Fragment implements AdapterView.OnItemSelected
         return view;
     }
 
-    // Public method to retrieve data from API and set/update the anime list
-    public void setAnimeGenre(String genre_id)
+    // Method to retrieve data from API and set/update the anime list
+    private void setAnimeGenre(String genre_id)
     {
         // Clear the list of animes
         try {

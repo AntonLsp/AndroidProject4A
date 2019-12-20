@@ -59,7 +59,8 @@ public class InfoFragment extends Fragment implements View.OnClickListener {
         TextView typeView = this.view.findViewById(R.id.type);
         typeView.setText(mViewModel.type);
         TextView episodesView = this.view.findViewById(R.id.episodes);
-        episodesView.setText(mViewModel.episodes + " episodes");
+        String episodesText = mViewModel.episodes + getResources().getString(R.string.space_episodes);
+        episodesView.setText(episodesText);
         TextView descView = this.view.findViewById(R.id.description);
         descView.setText(mViewModel.description);
         ImageView posterView = this.view.findViewById(R.id.poster);
