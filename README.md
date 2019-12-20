@@ -18,6 +18,7 @@ Then iBrowseAnime is made for you ! Using this app, you will be able to browse t
 
 ## Screenshots & usage
 Main RecyclerView :
+- Select the anime genre from the dropdown
 - Slide through the list
 - Tap the app logo to show the "about" screen
 
