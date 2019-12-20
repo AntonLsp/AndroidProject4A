@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import com.lesparre.ibrowseanime.models.Anime;
@@ -39,6 +41,14 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Anim
         getSupportFragmentManager().popBackStack();
         TextView t = findViewById(R.id.bannerText);
         t.setText( getString(R.string.select_genre) );
+    }
+
+    // Called when the user clicks on the app logo, opens About activity
+    public void onLogoClick(View view)
+    {
+        Intent intent = new Intent(this, AboutActivity.class);
+        startActivity(intent);
+
     }
 
 }

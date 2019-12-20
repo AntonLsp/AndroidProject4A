@@ -4,4 +4,11 @@
     <string name="anime_info">ANIME INFORMATIONS</string>
     <string name="loading_message">Loading data</string>
     <string name="cannot_load_from_api">Cannot load data.</string>
+    <string name="title_activity_about">AboutActivity</string>
+    <string name="credits">iBrowseAnimes is a 4th year student project.\n\n
+        It is aimed to help people to find good animes, based on what they like.\n\n
+        It was made in Java using Android Studio, Retrofit and Picasso.\n\n
+        The creator is Antoine LESPARRE.
+    </string>
+    <string name="back">back</string>
 </resources>
