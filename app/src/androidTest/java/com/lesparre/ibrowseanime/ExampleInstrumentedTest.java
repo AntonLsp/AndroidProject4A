@@ -1,4 +1,4 @@
-package com.lesparre.myanimelist;
+package com.lesparre.ibrowseanime;
 
 import android.content.Context;
 

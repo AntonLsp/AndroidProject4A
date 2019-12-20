@@ -1,6 +1,6 @@
-package com.lesparre.myanimelist.service;
+package com.lesparre.ibrowseanime.service;
 
-import com.lesparre.myanimelist.models.ByGenreRequest;
+import com.lesparre.ibrowseanime.models.ByGenreRequest;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

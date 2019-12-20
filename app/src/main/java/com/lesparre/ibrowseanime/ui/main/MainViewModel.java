@@ -1,8 +1,8 @@
-package com.lesparre.myanimelist.ui.main;
+package com.lesparre.ibrowseanime.ui.main;
 
 import androidx.lifecycle.ViewModel;
 
-import com.lesparre.myanimelist.models.Anime;
+import com.lesparre.ibrowseanime.models.Anime;
 
 import java.util.ArrayList;
 import java.util.List;

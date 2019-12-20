@@ -1,4 +1,4 @@
-package com.lesparre.myanimelist.models;
+package com.lesparre.ibrowseanime.models;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

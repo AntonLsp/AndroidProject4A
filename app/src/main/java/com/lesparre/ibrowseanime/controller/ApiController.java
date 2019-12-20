@@ -1,7 +1,7 @@
-package com.lesparre.myanimelist.controller;
+package com.lesparre.ibrowseanime.controller;
 
-import com.lesparre.myanimelist.models.ByGenreRequest;
-import com.lesparre.myanimelist.service.AnimeService;
+import com.lesparre.ibrowseanime.models.ByGenreRequest;
+import com.lesparre.ibrowseanime.service.AnimeService;
 
 import java.util.function.Consumer;
 

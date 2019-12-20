@@ -1,19 +1,17 @@
-package com.lesparre.myanimelist.ui.main;
+package com.lesparre.ibrowseanime.ui.main;
 
 
 import android.content.Context;
-import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.util.Pair;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.lesparre.myanimelist.R;
-import com.lesparre.myanimelist.models.Anime;
+import com.lesparre.ibrowseanime.R;
+import com.lesparre.ibrowseanime.models.Anime;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;

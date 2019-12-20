@@ -1,4 +1,4 @@
-package com.lesparre.myanimelist;
+package com.lesparre.ibrowseanime;
 
 import androidx.lifecycle.ViewModelProviders;
 
@@ -15,7 +15,7 @@ import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import com.lesparre.myanimelist.models.Anime;
+import com.lesparre.ibrowseanime.models.Anime;
 import com.squareup.picasso.Picasso;
 
 // Anime information panel's fragment controller

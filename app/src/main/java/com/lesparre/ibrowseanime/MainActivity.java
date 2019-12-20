@@ -1,4 +1,4 @@
-package com.lesparre.myanimelist;
+package com.lesparre.ibrowseanime;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
@@ -7,8 +7,8 @@ import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import com.lesparre.myanimelist.models.Anime;
-import com.lesparre.myanimelist.ui.main.MainFragment;
+import com.lesparre.ibrowseanime.models.Anime;
+import com.lesparre.ibrowseanime.ui.main.MainFragment;
 
 public class MainActivity extends AppCompatActivity implements MainFragment.AnimeListListener, InfoFragment.InfoPanelListener {
 

@@ -1,4 +1,4 @@
-package com.lesparre.myanimelist.ui.main;
+package com.lesparre.ibrowseanime.ui.main;
 
 import androidx.lifecycle.ViewModelProviders;
 
@@ -18,12 +18,10 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.lesparre.myanimelist.R;
-import com.lesparre.myanimelist.controller.ApiController;
-import com.lesparre.myanimelist.models.Anime;
-import com.lesparre.myanimelist.models.ByGenreRequest;
-import java.util.ArrayList;
-import java.util.List;
+import com.lesparre.ibrowseanime.R;
+import com.lesparre.ibrowseanime.controller.ApiController;
+import com.lesparre.ibrowseanime.models.Anime;
+import com.lesparre.ibrowseanime.models.ByGenreRequest;
 
 public class MainFragment extends Fragment implements AdapterView.OnItemSelectedListener,MainRecyclerViewAdapter.ItemClickListener{
 
