@@ -12,6 +12,7 @@ Then iBrowseAnime is made for you ! Using this app, you will be able to browse t
 ## Technical Features
 - MVC architecture
 - Uses Fragments and RecyclerViews
+- Differents Activites
 - Many differents widgets (ScrollView, LinearLayouts...)
 - Uses callbacks for asynchrnous tasks
 - Material Design
