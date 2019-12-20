@@ -5,14 +5,30 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorBackground"
     tools:context=".ui.main.MainFragment">
 
-
-    <androidx.recyclerview.widget.RecyclerView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="5dp"
-        android:id="@+id/rvAnime"/>
+        android:orientation="vertical">
+
+        <Spinner
+            android:id="@+id/genre_spinner"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:spinnerMode="dropdown"
+            android:dropDownWidth="match_parent"
+            android:paddingVertical="5dp"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="5dp"
+            android:id="@+id/rvAnime"/>
+
+    </LinearLayout>
 
     <TextView
         android:id="@+id/textViewMiddle"

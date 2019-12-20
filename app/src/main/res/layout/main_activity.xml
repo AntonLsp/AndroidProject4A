@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/colorBackground"
     tools:context=".MainActivity">
 
     <ImageView
@@ -18,19 +19,11 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/bannerText"
         android:text="SELECT A GENRE"
         android:layout_gravity="center_horizontal"
         android:textAlignment="center"
         android:paddingVertical="5dp"/>
-    <Spinner
-        android:id="@+id/genre_spinner"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:spinnerMode="dropdown"
-        android:dropDownWidth="match_parent"
-        android:paddingVertical="5dp"/>
-
 
     <fragment
         android:id="@+id/MainFragment"
