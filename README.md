@@ -16,12 +16,15 @@ Then iBrowseAnime is made for you ! Using this app, you will be able to browse t
 - Uses callbacks for asynchrnous tasks
 - Material Design
 
-## Screenshots
+## Screenshots & usage
 Main RecyclerView :
+- Slide through the list
+- Tap the app logo to show the "about" screen
 
 ![alt text](https://i.imgur.com/Scg4xqh.jpg "Main List")
 
 Anime information screen :
+- Tap anywhere on the panel to go back to the list
 
 ![alt text](https://i.imgur.com/PtsFbpT.jpg "Info Screen")
 
