@@ -64,6 +64,18 @@ public class MainFragment extends Fragment implements MainRecyclerViewAdapter.It
         return view;
     }
 
+    public void setAnimeGenre(String genre_id)
+    {
+        myAnimeList.clear();
+        this.adapter.notifyDataSetChanged();
+
+        TextView textView = this.view.findViewById(R.id.textViewMiddle);
+        textView.setText("Loading Data");
+        textView.setVisibility(TextView.VISIBLE);
+
+        ApiController.getInstance().getAnimesByGenre(genre_id,this::getAnime, this::fail);
+    }
+
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -78,7 +90,7 @@ public class MainFragment extends Fragment implements MainRecyclerViewAdapter.It
 
     private void getAnime(ByGenreRequest list)
     {
-        System.out.println(list.getAnime().get(0).getTitle());
+        this.myAnimeList.clear();
         this.myAnimeList.addAll(list.getAnime());
         this.adapter.notifyDataSetChanged();
 
@@ -89,7 +101,7 @@ public class MainFragment extends Fragment implements MainRecyclerViewAdapter.It
 
     private void fail() {
         TextView textView = this.view.findViewById(R.id.textViewMiddle);
-        textView.setText("Impossible de joindre le serveur.");
+        textView.setText("Cannot join server.");
         textView.setVisibility(TextView.VISIBLE);
     }
 

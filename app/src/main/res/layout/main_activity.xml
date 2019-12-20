@@ -14,31 +14,22 @@
         android:src="@drawable/logo"
         android:adjustViewBounds="true"
         />
-    
-    <LinearLayout
+
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/buttonContainer"
-        android:orientation="horizontal">
-        <Button
-            android:id="@+id/button1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="1" />
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="2" />
-        <Button
-            android:id="@+id/button3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="3" />
-    </LinearLayout>
+        android:text="SELECT A GENRE"
+        android:layout_gravity="center_horizontal"
+        android:textAlignment="center"
+        android:paddingVertical="5dp"/>
+    <Spinner
+        android:id="@+id/genre_spinner"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:spinnerMode="dropdown"
+        android:dropDownWidth="match_parent"
+        android:paddingVertical="5dp"/>
 
 
     <fragment
