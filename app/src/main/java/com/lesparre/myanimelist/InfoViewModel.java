@@ -2,8 +2,7 @@ package com.lesparre.myanimelist;
 
 import androidx.lifecycle.ViewModel;
 
-import com.lesparre.myanimelist.models.Anime;
-
+// ViewModel for the information panel fragment
 public class InfoViewModel extends ViewModel {
 
     public String title;

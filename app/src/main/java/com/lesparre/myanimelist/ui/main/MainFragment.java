@@ -31,10 +31,6 @@ public class MainFragment extends Fragment implements AdapterView.OnItemSelected
     private MainRecyclerViewAdapter adapter;
     private View view;
 
-    private RecyclerView recyclerView;
-
-    private List<Anime> myAnimeList;
-
     private AnimeListListener animeListListener;
 
     public static MainFragment newInstance() {
@@ -50,37 +46,36 @@ public class MainFragment extends Fragment implements AdapterView.OnItemSelected
         // listener of click events
         animeListListener = (AnimeListListener) getActivity();
 
-        // get data from api controller
-        System.out.println("API : "+ApiController.getInstance().toString());
-        ApiController.getInstance().getAnimesByGenre("1",this::getAnime, this::fail); // 1 is for Action
-
-        // loading text
-        TextView textView = view.findViewById(R.id.textViewMiddle);
-        textView.setText("Loading data");
+        // Initialize the list with Action genre animes
+        setAnimeGenre("1");
 
         // setup spinner
         setupSpinner();
 
         // set up the RecyclerView
-        this.recyclerView = view.findViewById(R.id.rvAnime);
-        this.recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        RecyclerView recyclerView = view.findViewById(R.id.rvAnime);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         this.adapter = new MainRecyclerViewAdapter(getActivity(), mViewModel.getMyAnimeList());
         adapter.setClickListener(this);
-        this.recyclerView.setAdapter(adapter);
+        recyclerView.setAdapter(adapter);
 
         return view;
     }
 
-    // Public method to set the anime list by genre
+    // Public method to retrieve data from API and set/update the anime list
     public void setAnimeGenre(String genre_id)
     {
         // Clear the list of animes
-        mViewModel.clearMyAnimeList();
-        this.adapter.notifyDataSetChanged();
+        try {
+            mViewModel.clearMyAnimeList();
+            this.adapter.notifyDataSetChanged();
+        } catch (NullPointerException e){
+
+        }
 
         // Show loading text
         TextView textView = this.view.findViewById(R.id.textViewMiddle);
-        textView.setText("Loading Data");
+        textView.setText(getText(R.string.loading_message));
         textView.setVisibility(TextView.VISIBLE);
 
         // Retrieve animes data from API controller
@@ -99,6 +94,7 @@ public class MainFragment extends Fragment implements AdapterView.OnItemSelected
         animeListListener.onAnimeSelected(adapter.getItem(position));
     }
 
+    // Callback method called when the API request is successfull
     private void getAnime(ByGenreRequest list)
     {
         // Change the list with the new animes, and update the recyclerview
@@ -110,9 +106,10 @@ public class MainFragment extends Fragment implements AdapterView.OnItemSelected
         textView.setVisibility(TextView.INVISIBLE);
     }
 
+    // Callback method called when the API request fails
     private void fail() {
         TextView textView = this.view.findViewById(R.id.textViewMiddle);
-        textView.setText("Cannot join server.");
+        textView.setText(getText(R.string.cannot_load_from_api));
         textView.setVisibility(TextView.VISIBLE);
     }
 
@@ -129,16 +126,18 @@ public class MainFragment extends Fragment implements AdapterView.OnItemSelected
         spinner.setOnItemSelectedListener(this);
     }
 
+    // Called when a new item has been selected in the spinner
     public void onItemSelected(AdapterView<?> parent, View view,
                                int pos, long id) {
         // A genre was selected, so we must set it
         setAnimeGenre(String.valueOf(pos+1));
     }
 
+    // Called when nothing is selected in the spinner
     public void onNothingSelected(AdapterView<?> parent) {
-        // Another interface callback
     }
 
+    // Interface defining the callback for anime selection
     public interface AnimeListListener{
         void onAnimeSelected(Anime anime);
     }

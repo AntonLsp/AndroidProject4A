@@ -18,6 +18,7 @@ import android.widget.TextView;
 import com.lesparre.myanimelist.models.Anime;
 import com.squareup.picasso.Picasso;
 
+// Anime information panel's fragment controller
 public class InfoFragment extends Fragment implements View.OnClickListener {
 
     private View view;
@@ -40,27 +41,32 @@ public class InfoFragment extends Fragment implements View.OnClickListener {
                              @Nullable Bundle savedInstanceState) {
 
         this.view = inflater.inflate(R.layout.info_fragment, container, false);
+
+        // The listener of the click events will be the parent activity
         infoPanelListener = (InfoPanelListener) getActivity();
 
-        ScrollView scrollView = (ScrollView) view.findViewById(R.id.scrollView);
+        // Sets the listener for the scrollView (needed to detect click)
+        ScrollView scrollView = view.findViewById(R.id.scrollView);
         scrollView.getChildAt(0).setOnClickListener(this);
 
         return view;
     }
 
+    // Fills the fields with the information from the ModelView
     public void setupView(){
         TextView titleView = this.view.findViewById(R.id.title);
         titleView.setText(mViewModel.title);
         TextView typeView = this.view.findViewById(R.id.type);
         typeView.setText(mViewModel.type);
         TextView episodesView = this.view.findViewById(R.id.episodes);
-        episodesView.setText(String.valueOf(mViewModel.episodes) + " episodes");
+        episodesView.setText(mViewModel.episodes + " episodes");
         TextView descView = this.view.findViewById(R.id.description);
         descView.setText(mViewModel.description);
         ImageView posterView = this.view.findViewById(R.id.poster);
         Picasso.get().load( mViewModel.imgURL ).into(posterView);
     }
 
+    // Called when a click is detected, and triggers onAnimePanelClicks for the listener
     @Override
     public void onClick(View v) {
         infoPanelListener.onAnimePanelClick();
@@ -72,6 +78,7 @@ public class InfoFragment extends Fragment implements View.OnClickListener {
         this.mViewModel = ViewModelProviders.of(this).get(InfoViewModel.class);
     }
 
+    // Setup the ViewModel after everything is done
     @Override
     public void onResume()
     {
@@ -84,6 +91,7 @@ public class InfoFragment extends Fragment implements View.OnClickListener {
         setupView();
     }
 
+    // Sets the current anime object
     public void setAnime(Anime anime)
     {
         this.anime = anime;

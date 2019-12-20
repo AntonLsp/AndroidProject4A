@@ -7,6 +7,7 @@ import com.lesparre.myanimelist.models.Anime;
 import java.util.ArrayList;
 import java.util.List;
 
+// ViewModel for the main fragment and some getter setters
 public class MainViewModel extends ViewModel {
 
     private List<Anime> myAnimeList;

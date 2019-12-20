@@ -3,6 +3,7 @@ package com.lesparre.myanimelist.models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+// A model defining an individual Anime object of the Jikan API response
 public class Anime {
 
     @SerializedName("image_url")
