@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MyAnimeList</string>
+    <string name="app_name">iBrowseAnimes</string>
     <string name="select_genre">SELECT AN ANIME GENRE</string>
     <string name="anime_info">ANIME INFORMATIONS</string>
     <string name="loading_message">Loading data</string>

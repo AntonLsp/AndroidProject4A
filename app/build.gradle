@@ -4,7 +4,7 @@ android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
     defaultConfig {
-        applicationId "com.lesparre.myanimelist"
+        applicationId 'com.lesparre.ibrowseanime'
         minSdkVersion 26
         targetSdkVersion 29
         versionCode 1
